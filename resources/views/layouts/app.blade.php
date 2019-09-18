@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="ja">
   <head>
-  <title>Laravel Quickstart - Basic</title>
+  <title>Todoリスト</title>
   </head>
 
   <body>
