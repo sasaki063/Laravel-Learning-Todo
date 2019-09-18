@@ -5,7 +5,9 @@
   </head>
 
   <body>
-    <a href="{{ url('/')  }}">Task List</a>
+    <a href="{{ url('/')  }}">Todoリスト</a>
+    <p>
       @yield('content')
+    </p>
   </body>
 </html>
