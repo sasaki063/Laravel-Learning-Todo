@@ -12,8 +12,8 @@
       <tbody>
         @foreach($tasks as $task)
           <tr>
-            <td>{{ $task->id }}</td>
-            <td>{{ $task->name }}</td>
+            <td>{{ $task-> getId() }}</td>
+            <td>{{ $task-> getName() }}</td>
             <td>作業中</td>
             <td>
               <form action="{{ url('task/'.$task->id) }}" method="POST">
@@ -31,7 +31,7 @@
     {{ csrf_field() }}
     <label for="task-name"></label>
     <input type="text" name="name" id="task-name">
-    <button type="submit">Add Task</button>
+    <button type="submit">追加</button>
   </form>
 
 @endsection
