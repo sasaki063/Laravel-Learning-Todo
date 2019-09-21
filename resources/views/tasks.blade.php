@@ -12,8 +12,8 @@
       <tbody>
         @foreach($tasks as $task)
           <tr>
-            <td>{{ $task-> getId() }}</td>
-            <td>{{ $task-> getName() }}</td>
+            <td>{{ $task-> id }}</td>
+            <td>{{ $task-> name }}</td>
             <td>作業中</td>
             <td>
               <form action="{{ url('task/'.$task->id) }}" method="POST">
