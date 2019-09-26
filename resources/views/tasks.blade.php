@@ -29,7 +29,7 @@
   @endif
 
   <h1>新規タスク追加</h1>
-  <form action="{{ url('task')  }}" method="POST">
+  <form action="/task" method="POST">
     {{ csrf_field() }}
     <label for="task-name"></label>
     <input type="text" name="name" id="task-name">
