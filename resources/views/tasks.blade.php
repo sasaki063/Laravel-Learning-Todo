@@ -16,7 +16,9 @@
             <td>{{ $task-> name }}</td>
             <td>作業中</td>
             <td>
-              <form action="{{ url('task/'.$task->id) }}" method="POST">
+              <form action="/task/{{ $task->id }}" method="POST">
+                {{ csrf_field() }}
+                {{ method_field('DELETE') }}
                  <button type="submit">削除</button>
               </form>
             </td>
