@@ -12,7 +12,9 @@
       <tbody>
         @foreach($tasks as $task)
           <tr>
-            <td>{{ $task-> id }}</td>
+            <td>
+              {{ $loop-> iteration}}
+            </td>
             <td>{{ $task-> name }}</td>
             <td>作業中</td>
             <td>
