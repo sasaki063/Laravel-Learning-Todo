@@ -27,6 +27,9 @@ class TaskController extends Controller
     }
     public function update($id)
     {
+      $task = Task::find($id);
+      $task->status = 1;
+      $task->save();
       return redirect('/task');
     }
 }

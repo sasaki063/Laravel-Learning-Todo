@@ -19,10 +19,12 @@
               <form action="/task/{{ $task->id }}" method="POST">
                 {{ csrf_field() }}
                 {{ method_field('PUT') }}
-              <button type="submit">{{ $task-> status_label }}</button>
+              <button type="submit">
+                {{ $task-> status_label }}
+              </button>
               </form>
             </td>
-            
+
             <td>
               <form action="/task/{{ $task->id }}" method="POST">
                 {{ csrf_field() }}
