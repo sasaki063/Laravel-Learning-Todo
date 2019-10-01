@@ -17,11 +17,12 @@ class TaskController extends Controller
       $task = new Task;
       $task->name = $request->name;
       $task->save();
-      return redirect('/');
+      return redirect('/task');
     }
 
-    public function delete(Task $task)
+    public function delete($id)
     {
-
+      Task::findOrFail($id)->delete();
+      return redirect('/task');
     }
 }

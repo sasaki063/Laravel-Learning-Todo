@@ -12,11 +12,15 @@
       <tbody>
         @foreach($tasks as $task)
           <tr>
-            <td>{{ $task-> id }}</td>
+            <td>
+              {{ $loop-> iteration}}
+            </td>
             <td>{{ $task-> name }}</td>
             <td>作業中</td>
             <td>
-              <form action="{{ url('task/'.$task->id) }}" method="POST">
+              <form action="/task/{{ $task->id }}" method="POST">
+                {{ csrf_field() }}
+                {{ method_field('DELETE') }}
                  <button type="submit">削除</button>
               </form>
             </td>
@@ -27,7 +31,7 @@
   @endif
 
   <h1>新規タスク追加</h1>
-  <form action="{{ url('task')  }}" method="POST">
+  <form action="/task" method="POST">
     {{ csrf_field() }}
     <label for="task-name"></label>
     <input type="text" name="name" id="task-name">
