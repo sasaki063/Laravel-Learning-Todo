@@ -14,9 +14,7 @@
           <tr>
             <td>{{ $loop-> iteration }}</td>
             <td>{{ $task-> name }}</td>
-            <td>
-              <span class="label">{{ $task->status_label }}</span>
-            </td>
+            <td>{{ $task-> status_label }}</td>
             <td>
               <form action="/task/{{ $task->id }}" method="POST">
                 {{ csrf_field() }}
