@@ -25,4 +25,8 @@ class TaskController extends Controller
       Task::findOrFail($id)->delete();
       return redirect('/task');
     }
+    public function update($id)
+    {
+      return redirect('/task');
+    }
 }
