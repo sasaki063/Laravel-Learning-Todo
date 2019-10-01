@@ -28,8 +28,20 @@ class TaskController extends Controller
     public function update($id)
     {
       $task = Task::find($id);
-      $task->status = 1;
-      $task->save();
+      $i = $task->stauts;
+
+      switch ($i) {
+        case 0:
+          $task->status = '0';
+          $task->save();
+        break;
+
+        case 1:
+          $task->status = '0';
+          $task->save();
+        break;
+      }
+
       return redirect('/task');
     }
 }
