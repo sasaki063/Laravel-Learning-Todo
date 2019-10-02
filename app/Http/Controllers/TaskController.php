@@ -32,15 +32,14 @@ class TaskController extends Controller
       switch ($task->status) {
         case 0:
           $task->status = '1';
-          $task->save();
         break;
 
         case 1:
           $task->status = '0';
-          $task->save();
         break;
       }
 
+      $task->save();
       return redirect('/task');
     }
 }
