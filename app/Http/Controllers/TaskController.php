@@ -29,7 +29,7 @@ class TaskController extends Controller
     {
 
       $task = Task::find($id);
-      $task->status == '0'  ? $task->status = '1' : $task->status = '0';
+      $task->status = ($task->status === '0' ) ?  '1' : '0';
 
       $task->save();
       return redirect('/task');
