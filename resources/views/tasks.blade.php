@@ -12,11 +12,19 @@
       <tbody>
         @foreach($tasks as $task)
           <tr>
-            <td>
-              {{ $loop-> iteration}}
-            </td>
+            <td>{{ $loop-> iteration }}</td>
             <td>{{ $task-> name }}</td>
-            <td>作業中</td>
+
+            <td>
+              <form action="/task/{{ $task->id }}" method="POST">
+                {{ csrf_field() }}
+                {{ method_field('PUT') }}
+              <button type="submit">
+                {{ $task-> status_label }}
+              </button>
+              </form>
+            </td>
+
             <td>
               <form action="/task/{{ $task->id }}" method="POST">
                 {{ csrf_field() }}

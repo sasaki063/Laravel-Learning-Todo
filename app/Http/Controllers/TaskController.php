@@ -22,7 +22,16 @@ class TaskController extends Controller
 
     public function delete($id)
     {
-      Task::findOrFail($id)->delete();
+      Task::find($id)->delete();
+      return redirect('/task');
+    }
+    public function update($id)
+    {
+
+      $task = Task::find($id);
+      $task->status = ($task->status === '0' ) ?  '1' : '0';
+
+      $task->save();
       return redirect('/task');
     }
 }
