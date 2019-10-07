@@ -8,7 +8,10 @@ class TaskController extends Controller
 {
     public function index(Request $request)
     {
-      return view('tasks',  ['input' => '']);
+      $item = Task::orderBy('created_at', 'asc')->get();
+      return view('tasks',  [
+        'item'  => $item,
+        'input' => '']);
     }
 
     public function post(Request $request)
@@ -25,6 +28,7 @@ class TaskController extends Controller
       Task::find($id)->delete();
       return redirect('/task');
     }
+
     public function update($id)
     {
       $task = Task::find($id);
