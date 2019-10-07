@@ -1,42 +1,51 @@
+
 @extends('layouts.app')
 @section('content')
 
-  @if (count($tasks) > 0)
-    <table>
-      <thead>
-        <th>ID</th>
-        <th>タスク</th>
-        <th>状態</th>
-      </thead>
+  <form action="/task" method="post">
+    {{ csrf_field() }}
+    {{ method_field('PATCH') }}
+    <label><input type="radio" name="status" value="all" checked="checked">全部</label><br>
+    <label><input type="radio" name="status" value="0">作業中</label><br>
+    <label><input type="radio" name="status" value="1">完了</label><br>
+    <input type="submit" value="find">
+  </form>
 
-      <tbody>
-        @foreach($tasks as $task)
-          <tr>
-            <td>{{ $loop-> iteration }}</td>
-            <td>{{ $task-> name }}</td>
 
-            <td>
-              <form action="/task/{{ $task->id }}" method="POST">
-                {{ csrf_field() }}
-                {{ method_field('PUT') }}
+  @if (isset($item))
+    @if (count($item) > 0)
+      <table>
+        <thead>
+          <th>ID</th>
+          <th>タスク</th>
+          <th>状態</th>
+        </thead>
+      @foreach($item as $task)
+        <tr>
+          <td>{{ $loop-> iteration }}</td>
+          <td>{{ $task-> name }}</td>
+          <td>
+            <form action="/task/{{ $task->id }}" method="POST">
+              {{ csrf_field() }}
+              {{ method_field('PUT') }}
               <button type="submit">
-                {{ $task-> status_label }}
+              {{ $task-> status_label }}
               </button>
-              </form>
-            </td>
+            </form>
+          </td>
+          <td>
+            <form action="/task/{{ $task->id }}" method="POST">
+              {{ csrf_field() }}
+              {{ method_field('DELETE') }}
+              <button type="submit">削除</button>
+            </form>
+          </td>
+        </tr>
+      @endforeach
+   @endif
+ @endif
+<br>
 
-            <td>
-              <form action="/task/{{ $task->id }}" method="POST">
-                {{ csrf_field() }}
-                {{ method_field('DELETE') }}
-                 <button type="submit">削除</button>
-              </form>
-            </td>
-          </tr>
-        @endforeach
-      </tbody>
-    </table>
-  @endif
 
   <h1>新規タスク追加</h1>
   <form action="/task" method="POST">
