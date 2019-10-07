@@ -16,6 +16,7 @@ class TaskController extends Controller
     {
       $task = new Task;
       $task->name = $request->name;
+      
       $task->save();
       return redirect('/task');
     }
@@ -27,9 +28,8 @@ class TaskController extends Controller
     }
     public function update($id)
     {
-
       $task = Task::find($id);
-      $task->status = ($task->status === '0' ) ?  '1' : '0';
+      $task->status = ($task->status == '0' ) ?  '1' : '0';
 
       $task->save();
       return redirect('/task');
