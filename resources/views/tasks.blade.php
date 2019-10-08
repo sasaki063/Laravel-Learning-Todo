@@ -4,9 +4,10 @@
 
   <form action="/task" method="post">
     {{ csrf_field() }}
-    <label><input type="submit" name="status" value="all" checked="checked">全部</label>
-    <label><input type="submit" name="status" value="0">作業中</label>
-    <label><input type="submit" name="status" value="1">完了</label>
+    <label><input type="radio" name="status" value="all" checked="checked">全部</label>
+    <label><input type="radio" name="status" value="0">作業中</label>
+    <label><input type="radio" name="status" value="1">完了</label>
+    <input type="submit" value="送信する">
   </form>
 
   @if (isset($item))
