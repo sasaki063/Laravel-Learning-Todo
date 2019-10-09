@@ -6,17 +6,19 @@ use Illuminate\Http\Request;
 
 class TaskController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-      $tasks = Task::orderBy('created_at', 'asc')->get();
-      return view('tasks', ['tasks' => $tasks]);
+      $item = Task::orderBy('created_at', 'asc')->get();
+      return view('tasks',  [
+        'item'  => $item,
+        'input' => '']);
     }
 
     public function post(Request $request)
     {
       $task = new Task;
       $task->name = $request->name;
-      
+
       $task->save();
       return redirect('/task');
     }
@@ -26,6 +28,7 @@ class TaskController extends Controller
       Task::find($id)->delete();
       return redirect('/task');
     }
+
     public function update($id)
     {
       $task = Task::find($id);
@@ -33,5 +36,17 @@ class TaskController extends Controller
 
       $task->save();
       return redirect('/task');
+    }
+
+    public function search(Request $request)
+    {
+      $status = $request->status;
+       if ($status == 'all') {
+         $item = Task::orderBy('created_at', 'asc')->get();
+       } else {
+         $item = Task::where('status',$request->status)->get();
+       }
+      $param = ['input' => $request->status, 'item' => $item];
+       return view('/tasks', $param);
     }
 }
