@@ -41,9 +41,10 @@ class TaskController extends Controller
     public function search(Request $request)
     {
       $status = $request->status;
-       $item = Task::where('status',$request->status)->get();
        if ($status == 'all') {
          $item = Task::orderBy('created_at', 'asc')->get();
+       } else {
+         $item = Task::where('status',$request->status)->get();
        }
       $param = ['input' => $request->status, 'item' => $item];
        return view('/tasks', $param);
